@@ -1,0 +1,200 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block contents %}
+
+<style>
+    body {
+        background-color: #0a0f1c;
+        font-family: 'Courier New', monospace;
+    }
+
+    /* 🔥 HERO */
+    .hero-title {
+        font-size: 42px;
+        font-weight: bold;
+        color: #00ffcc;
+        text-shadow: 0 0 15px #00ffcc;
+    }
+
+    .hero-sub {
+        color: #9ca3af;
+        margin-top: 10px;
+    }
+
+    .btn-cyber {
+        background: linear-gradient(90deg, #00ffcc, #00ccff);
+        color: black;
+        padding: 12px 25px;
+        border-radius: 8px;
+        font-weight: bold;
+        transition: 0.3s;
+    }
+
+    .btn-cyber:hover {
+        box-shadow: 0 0 15px #00ffcc;
+        transform: scale(1.05);
+    }
+
+    /* 🔥 CARD */
+    .card {
+        background: black;
+        border: 1px solid #00ffcc;
+        border-radius: 12px;
+        padding: 25px;
+        box-shadow: 0 0 20px #00ffcc33;
+    }
+
+    /* 🔥 HIGHLIGHT */
+    .highlight {
+        background: #020617;
+        border: 1px solid #00ffcc;
+        padding: 12px;
+        border-radius: 8px;
+        text-align: center;
+        color: #00ffcc;
+        font-weight: bold;
+        margin-top: 15px;
+    }
+
+    /* 🔥 GRID */
+    .grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 20px;
+    }
+
+    .mini-card {
+        background: #111827;
+        border: 1px solid #00ffcc;
+        padding: 20px;
+        border-radius: 10px;
+        transition: 0.3s;
+    }
+
+    .mini-card:hover {
+        transform: scale(1.05);
+        box-shadow: 0 0 10px #00ffcc;
+    }
+
+    .cyan { color: #00ffcc; }
+    .yellow { color: #facc15; }
+    .red { color: #ff4d4d; }
+
+    /* 🔥 STATUS BAR */
+    .status {
+        margin-top: 30px;
+        padding: 12px;
+        border: 1px solid red;
+        border-radius: 8px;
+        text-align: center;
+        color: red;
+        font-weight: bold;
+        animation: pulse 1.5s infinite;
+    }
+
+    @keyframes pulse {
+        0% { opacity: 0.5; }
+        50% { opacity: 1; }
+        100% { opacity: 0.5; }
+    }
+</style>
+
+
+<section class="max-w-6xl mx-auto px-6 py-12">
+
+    <!-- 🔥 HERO -->
+    <div class="text-center mb-12">
+        <h1 class="hero-title">
+            🚨 AIS CYBER SECURITY SYSTEM
+        </h1>
+        <p class="hero-sub">
+            Real-time maritime anomaly detection using intelligent data analytics
+        </p>
+
+        <!-- BUTTON -->
+        <div class="mt-6">
+            <a href="{% url 'UserLogin' %}" class="btn-cyber">
+                ⚡ Access Dashboard
+            </a>
+        </div>
+    </div>
+
+
+    <!-- 🔥 MAIN CARD -->
+    <div class="card">
+
+        <h2 class="text-xl text-white text-center mb-4">
+            📊 SPEED ANALYSIS ENGINE
+        </h2>
+
+        <p class="text-gray-300 text-justify">
+            Modern maritime navigation relies on advanced sensor technologies like 
+            <span class="cyan font-semibold">GNSS</span>,
+            <span class="cyan font-semibold">LIDAR</span>,
+            <span class="cyan font-semibold">RADAR</span>, and
+            <span class="cyan font-semibold">AIS</span>.
+        </p>
+
+        <br>
+
+        <p class="text-gray-300 text-justify">
+            Any interference in these systems can lead to serious cybersecurity risks 
+            and incorrect navigation decisions.
+        </p>
+
+        <br>
+
+        <p class="text-gray-300">
+            This system detects anomalies using:
+        </p>
+
+        <ul class="text-gray-400 ml-6 mt-3 space-y-1">
+            <li>⏱ Transmission timing analysis</li>
+            <li>📊 Speed comparison (V_calc vs V_rep)</li>
+            <li>⚡ Speed variation detection</li>
+        </ul>
+
+        <!-- 🔥 HIGHLIGHT -->
+        <div class="highlight">
+            🚀 Multi-feature analysis improves anomaly detection accuracy
+        </div>
+
+    </div>
+
+
+    <!-- 🔥 FEATURE CARDS -->
+    <div class="grid mt-10">
+
+        <div class="mini-card">
+            <h3 class="cyan font-semibold">⏱ TIMING ANALYSIS</h3>
+            <p class="text-gray-400 text-sm mt-2">
+                Detect abnormal AIS transmission intervals.
+            </p>
+        </div>
+
+        <div class="mini-card">
+            <h3 class="yellow font-semibold">⚡ SPEED COMPARISON</h3>
+            <p class="text-gray-400 text-sm mt-2">
+                Compare reported vs calculated ship speeds.
+            </p>
+        </div>
+
+        <div class="mini-card">
+            <h3 class="red font-semibold">🚨 ANOMALY DETECTION</h3>
+            <p class="text-gray-400 text-sm mt-2">
+                Identify suspicious maritime behavior patterns.
+            </p>
+        </div>
+
+    </div>
+
+
+    <!-- 🔥 STATUS -->
+    <div class="status">
+        🚨 SYSTEM STATUS: MONITORING ACTIVE | AI SECURITY ENGINE ENABLED
+    </div>
+
+</section>
+
+{% endblock %}

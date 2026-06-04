@@ -1,0 +1,177 @@
+{% extends 'users/userbase.html' %}
+{% load static %}
+
+{% block contents %}
+
+<style>
+    body {
+        background-color: #0a0f1c;
+        font-family: 'Courier New', monospace;
+    }
+
+    /* 🔥 HEADER */
+    .title {
+        text-align: center;
+        color: #8b5cf6;
+        font-size: 28px;
+        font-weight: bold;
+        letter-spacing: 2px;
+        margin-bottom: 10px;
+        text-shadow: 0 0 10px #8b5cf6;
+    }
+
+    .subtitle {
+        text-align: center;
+        color: #9ca3af;
+        margin-bottom: 20px;
+    }
+
+    /* 🔥 CARD */
+    .card {
+        background: black;
+        border: 1px solid #8b5cf6;
+        border-radius: 12px;
+        padding: 20px;
+        box-shadow: 0 0 20px #8b5cf633;
+    }
+
+    /* 🔥 TABLE SCROLL */
+    .table-container {
+        max-height: 400px;
+        overflow-y: auto;
+        overflow-x: auto;
+    }
+
+    /* 🔥 GRID TABLE */
+    table {
+        width: 100%;
+        border-collapse: collapse;
+        font-size: 12px;
+        color: #00ffcc;
+    }
+
+    table th, table td {
+        border: 1px solid #8b5cf6;
+        padding: 8px;
+        text-align: center;
+    }
+
+    table th {
+        background-color: #020617;
+        position: sticky;
+        top: 0;
+        z-index: 2;
+        color: #8b5cf6;
+    }
+
+    table tr:nth-child(even) {
+        background-color: #0f172a;
+    }
+
+    table tr:nth-child(odd) {
+        background-color: #020617;
+    }
+
+    table tr:hover {
+        background-color: #1f2937;
+    }
+
+    /* 🔥 INFO CARDS */
+    .grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 20px;
+        margin-top: 30px;
+    }
+
+    .mini-card {
+        background: #111827;
+        border: 1px solid #8b5cf6;
+        padding: 15px;
+        border-radius: 10px;
+        transition: 0.3s;
+    }
+
+    .mini-card:hover {
+        transform: scale(1.05);
+        box-shadow: 0 0 10px #8b5cf6;
+    }
+
+    .mini-title {
+        font-weight: bold;
+        margin-bottom: 8px;
+    }
+
+    .purple { color: #8b5cf6; }
+    .yellow { color: #facc15; }
+    .green { color: #22c55e; }
+
+    /* 🔥 STATUS */
+    .status {
+        margin-top: 30px;
+        padding: 12px;
+        border: 1px solid #8b5cf6;
+        border-radius: 8px;
+        text-align: center;
+        color: #8b5cf6;
+        font-weight: bold;
+        animation: pulse 1.5s infinite;
+    }
+
+    @keyframes pulse {
+        0% { opacity: 0.5; }
+        50% { opacity: 1; }
+        100% { opacity: 0.5; }
+    }
+</style>
+
+
+<section class="max-w-6xl mx-auto px-6 py-10">
+
+    <!-- 🔥 HEADER -->
+    <div class="title">📊 CORRELATION ANALYTICS ENGINE</div>
+    <div class="subtitle">
+        Comparing calculated vs reported ship speeds for anomaly detection
+    </div>
+
+    <!-- 🔥 TABLE -->
+    <div class="card">
+        <div class="table-container">
+            {{ data|safe }}
+        </div>
+    </div>
+
+    <!-- 🔥 INFO CARDS -->
+    <div class="grid">
+
+        <div class="mini-card">
+            <div class="mini-title purple">📊 V_CALC</div>
+            <div class="text-gray-400 text-sm">
+                Speed calculated using distance and time interval.
+            </div>
+        </div>
+
+        <div class="mini-card">
+            <div class="mini-title yellow">⚠ V_REP</div>
+            <div class="text-gray-400 text-sm">
+                Speed reported by ship AIS system.
+            </div>
+        </div>
+
+        <div class="mini-card">
+            <div class="mini-title green">✔ CORRELATION</div>
+            <div class="text-gray-400 text-sm">
+                Measures similarity between calculated and reported speed.
+            </div>
+        </div>
+
+    </div>
+
+    <!-- 🔥 STATUS -->
+    <div class="status">
+        📊 SYSTEM STATUS: ANALYTICS ACTIVE | CORRELATION ENGINE RUNNING
+    </div>
+
+</section>
+
+{% endblock %}

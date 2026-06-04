@@ -1,0 +1,140 @@
+{% extends 'users/userbase.html' %}
+{% load static %}
+{% block contents %}
+
+<style>
+    body {
+        background-color: #0a0f1c;
+        font-family: 'Courier New', monospace;
+    }
+
+    .form-container {
+      background-color: #111827;
+      padding: 25px;
+      border-radius: 10px;
+      box-shadow: 0 0 20px #00ffcc33;
+      max-width: 600px;
+      margin: 40px auto;
+      border: 1px solid #00ffcc;
+    }
+
+    h1 {
+      font-size: 2rem;
+      text-align: center;
+      color: #00ffcc;
+      margin-bottom: 20px;
+      text-shadow: 0 0 10px #00ffcc;
+    }
+
+    label {
+      font-size: 1rem;
+      color: #9ca3af;
+      margin-bottom: 5px;
+      display: block;
+    }
+
+    input[type="text"], input[type="number"] {
+      width: 100%;
+      padding: 10px;
+      margin: 8px 0 16px 0;
+      border: 1px solid #00ffcc;
+      border-radius: 6px;
+      font-size: 1rem;
+      background-color: #1f2937;
+      color: #00ffcc;
+    }
+
+    input:focus {
+      outline: none;
+      box-shadow: 0 0 10px #00ffcc;
+    }
+
+    button[type="submit"] {
+      padding: 12px;
+      background: linear-gradient(90deg, #00ffcc, #00ccff);
+      color: black;
+      border: none;
+      border-radius: 6px;
+      font-size: 1.2rem;
+      cursor: pointer;
+      width: 100%;
+      transition: 0.3s;
+      font-weight: bold;
+    }
+
+    button:hover {
+      box-shadow: 0 0 15px #00ffcc;
+      transform: scale(1.03);
+    }
+
+    /* RESULT BOX */
+    .result {
+        background: black;
+        padding: 15px;
+        border-radius: 8px;
+        border: 1px solid #00ffcc;
+        margin-bottom: 20px;
+        font-size: 14px;
+    }
+
+    .warning {
+        color: red;
+        font-weight: bold;
+    }
+
+    .safe {
+        color: #00ffcc;
+        font-weight: bold;
+    }
+</style>
+
+<div class="form-container">
+
+    <h1>🚨 Cyber Threat Detection Panel</h1>
+
+    <!-- RESULT DISPLAY -->
+    <div class="result">
+
+        {% if var1 %}<div class="warning">⚠ {{var1}}</div>{% endif %}
+        {% if var2 %}<div class="warning">⚠ {{var2}}</div>{% endif %}
+        {% if var3 %}<div class="warning">⚠ {{var3}}</div>{% endif %}
+
+        {% if msg %}
+            <div class="safe">✔ {{msg}}</div>
+        {% endif %}
+
+        {% if threat %}
+            {% if "WARNING" in threat %}
+                <div class="warning">🚨 {{threat}}</div>
+            {% else %}
+                <div class="safe">✅ {{threat}}</div>
+            {% endif %}
+        {% endif %}
+
+    </div>
+
+    <!-- FORM -->
+    <form action="{% url 'selfTest' %}" method="POST">
+        {% csrf_token %}
+
+        <label>MMSI (Ship ID)</label>
+        <input type="text" name="mmsi" required placeholder="Enter MMSI">
+
+        <label>Latitude</label>
+        <input type="number" name="lat" step="0.0001" required placeholder="Enter Latitude">
+
+        <label>Longitude</label>
+        <input type="number" name="lon" step="0.0001" required placeholder="Enter Longitude">
+
+        <label>Time</label>
+        <input type="number" name="time" required placeholder="Enter Time">
+
+        <label>Speed</label>
+        <input type="number" name="speed" step="0.1" required placeholder="Enter Speed">
+
+        <button type="submit">⚡ Run Security Scan</button>
+    </form>
+
+</div>
+
+{% endblock %}

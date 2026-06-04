@@ -1,0 +1,192 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block contents %}
+
+<style>
+    body {
+        background-color: #0a0f1c;
+        font-family: 'Courier New', monospace;
+    }
+
+    .card {
+        background: black;
+        border: 1px solid #00ffcc;
+        border-radius: 12px;
+        padding: 30px;
+        box-shadow: 0 0 20px #00ffcc33;
+    }
+
+    .title {
+        text-align: center;
+        color: #00ffcc;
+        font-size: 28px;
+        font-weight: bold;
+        text-shadow: 0 0 10px #00ffcc;
+    }
+
+    .subtitle {
+        text-align: center;
+        color: #9ca3af;
+        font-size: 13px;
+        margin-top: 5px;
+    }
+
+    label {
+        color: #9ca3af;
+        font-size: 13px;
+    }
+
+    input, textarea, select {
+        width: 100%;
+        padding: 10px;
+        margin-top: 5px;
+        background: #020617;
+        border: 1px solid #00ffcc;
+        border-radius: 6px;
+        color: #00ffcc;
+    }
+
+    input:focus {
+        outline: none;
+        box-shadow: 0 0 10px #00ffcc;
+    }
+
+    .btn {
+        background: linear-gradient(90deg, #00ffcc, #00ccff);
+        color: black;
+        padding: 12px 25px;
+        border-radius: 8px;
+        font-weight: bold;
+        transition: 0.3s;
+    }
+
+    .btn:hover {
+        transform: scale(1.05);
+        box-shadow: 0 0 15px #00ffcc;
+    }
+
+    .error-box {
+        background: #ff000010;
+        border: 1px solid red;
+        color: red;
+        padding: 10px;
+        border-radius: 6px;
+        margin-top: 10px;
+        text-align: center;
+    }
+
+    .status {
+        margin-top: 20px;
+        text-align: center;
+        color: #00ffcc;
+        font-size: 12px;
+        animation: pulse 1.5s infinite;
+    }
+
+    @keyframes pulse {
+        0% { opacity: 0.5; }
+        50% { opacity: 1; }
+        100% { opacity: 0.5; }
+    }
+</style>
+
+
+<section class="flex justify-center items-center py-12">
+
+    <div class="card w-full max-w-3xl">
+
+        <!-- 🔥 TITLE -->
+        <div class="title">🔐 CYBER ACCESS REGISTRATION</div>
+        <div class="subtitle">
+            Secure account creation for AIS monitoring system
+        </div>
+
+        <!-- 🔥 FORM -->
+        <form action="{% url 'UserRegisterActions' %}" method="POST" class="space-y-6 mt-6">
+            {% csrf_token %}
+
+            <div class="grid md:grid-cols-2 gap-4">
+
+                <div>
+                    <label>User Name</label>
+                    {{ form.name }}
+                </div>
+
+                <div>
+                    <label>Login ID</label>
+                    {{ form.loginid }}
+                </div>
+
+                <div>
+                    <label>Password</label>
+                    {{ form.password }}
+                </div>
+
+                <div>
+                    <label>Mobile</label>
+                    {{ form.mobile }}
+                </div>
+
+                <div>
+                    <label>Email</label>
+                    {{ form.email }}
+                </div>
+
+                <div>
+                    <label>Locality</label>
+                    {{ form.locality }}
+                </div>
+
+                <div class="md:col-span-2">
+                    <label>Address</label>
+                    {{ form.address }}
+                </div>
+
+                <div>
+                    <label>City</label>
+                    {{ form.city }}
+                </div>
+
+                <div>
+                    <label>State</label>
+                    {{ form.state }}
+                </div>
+
+            </div>
+
+            <!-- hidden -->
+            <div class="hidden">
+                {{ form.status }}
+            </div>
+
+            <!-- 🔥 BUTTON -->
+            <div class="text-center mt-6">
+                <button type="submit" class="btn">
+                    ⚡ Register Securely
+                </button>
+            </div>
+
+            <!-- 🔥 MESSAGES -->
+            {% if messages %}
+            <div class="mt-4">
+                {% for message in messages %}
+                <div class="error-box">
+                    🚨 {{ message }}
+                </div>
+                {% endfor %}
+            </div>
+            {% endif %}
+
+        </form>
+
+        <!-- 🔥 STATUS -->
+        <div class="status">
+            🔐 SYSTEM STATUS: SECURE REGISTRATION ENABLED
+        </div>
+
+    </div>
+
+</section>
+
+{% endblock %}

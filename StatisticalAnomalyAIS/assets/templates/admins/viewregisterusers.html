@@ -1,0 +1,94 @@
+{% extends 'admins/adminbase.html' %}
+{% load static %}
+
+{% block contents %}
+
+<section class="max-w-7xl mx-auto px-6 py-10">
+
+    <!-- 🔥 HEADER -->
+    <div class="mb-8 flex justify-between items-center">
+        <h2 class="text-3xl font-bold text-indigo-400 flex items-center gap-3">
+            <i class="fa fa-users"></i> Registered Users
+        </h2>
+    </div>
+
+
+    <!-- 🔥 TABLE CARD -->
+    <div class="bg-gray-800 rounded-2xl shadow-lg overflow-hidden">
+
+        <div class="overflow-x-auto">
+
+            <table class="min-w-full text-sm text-gray-300">
+
+                <!-- HEADER -->
+                <thead class="bg-gray-700 text-gray-200 uppercase text-xs tracking-wider">
+                    <tr class="text-center">
+                        <th class="px-4 py-3">#</th>
+                        <th class="px-4 py-3">Name</th>
+                        <th class="px-4 py-3">Login ID</th>
+                        <th class="px-4 py-3">Mobile</th>
+                        <th class="px-4 py-3">Email</th>
+                        <th class="px-4 py-3">Location</th>
+                        <th class="px-4 py-3">Status</th>
+                        <th class="px-4 py-3">Action</th>
+                    </tr>
+                </thead>
+
+                <!-- BODY -->
+                <tbody class="divide-y divide-gray-700">
+
+                    {% for i in data %}
+                    <tr class="text-center hover:bg-gray-700 transition duration-200">
+
+                        <td class="px-4 py-3">{{ forloop.counter }}</td>
+                        <td class="px-4 py-3 font-semibold text-white">{{ i.name }}</td>
+                        <td class="px-4 py-3">{{ i.loginid }}</td>
+                        <td class="px-4 py-3">{{ i.mobile }}</td>
+                        <td class="px-4 py-3 text-indigo-400">{{ i.email }}</td>
+                        <td class="px-4 py-3">{{ i.locality }}</td>
+
+                        <!-- 🔥 STATUS -->
+                        <td class="px-4 py-3">
+                            {% if i.status == 'waiting' %}
+                            <span class="bg-yellow-500/20 text-yellow-400 px-3 py-1 rounded-full text-xs font-semibold">
+                                ⏳ Waiting
+                            </span>
+                            {% else %}
+                            <span class="bg-green-500/20 text-green-400 px-3 py-1 rounded-full text-xs font-semibold">
+                                ✔ Active
+                            </span>
+                            {% endif %}
+                        </td>
+
+                        <!-- 🔥 ACTION -->
+                        <td class="px-4 py-3 space-x-2">
+
+                            {% if i.status == 'waiting' %}
+                            <a href="/ActivaUsers/?uid={{ i.id }}"
+                               class="bg-indigo-600 hover:bg-indigo-700 text-white px-3 py-1 rounded-lg text-xs shadow transition">
+                                Activate
+                            </a>
+                            {% else %}
+                            <span class="text-green-400 text-xs font-semibold">Active</span>
+
+                            <a href="/DeleteUsers/?uid={{ i.id }}"
+                               class="bg-red-600 hover:bg-red-700 text-white px-3 py-1 rounded-lg text-xs shadow transition">
+                                Delete
+                            </a>
+                            {% endif %}
+
+                        </td>
+
+                    </tr>
+                    {% endfor %}
+
+                </tbody>
+
+            </table>
+
+        </div>
+    </div>
+
+</section>
+
+{% endblock %}

@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>AIS Anomaly Detection</title>
+
+    <!-- Tailwind -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+
+    <!-- Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+    </style>
+</head>
+
+<body class="bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900 text-gray-200">
+
+<!-- 🔥 HEADER -->
+<header class="bg-gray-800 border-b border-gray-700 shadow-md">
+    <div class="max-w-7xl mx-auto px-6 py-4 text-center">
+        <h1 class="text-2xl font-bold text-indigo-400">
+            🚢 AIS Anomaly Detection System
+        </h1>
+        <p class="text-gray-400 text-sm mt-1">
+            Maritime Cybersecurity Platform
+        </p>
+    </div>
+</header>
+
+
+<!-- 🔥 NAVBAR -->
+<nav class="bg-gray-800 border-b border-gray-700">
+    <div class="max-w-7xl mx-auto px-4 py-3 flex flex-wrap justify-center gap-3">
+
+        <a href="{% url 'index' %}" class="nav-btn">
+            <i class="fa fa-home"></i> Home
+        </a>
+
+        <a href="{% url 'UserLogin' %}" class="nav-btn">
+            <i class="fa fa-user"></i> User Login
+        </a>
+
+        <a href="{% url 'AdminLogin' %}" class="nav-btn">
+            <i class="fa fa-user-shield"></i> Admin Login
+        </a>
+
+        <a href="{% url 'UserRegister' %}" class="nav-btn">
+            <i class="fa fa-user-plus"></i> Register
+        </a>
+
+    </div>
+</nav>
+
+
+<!-- 🔥 MAIN -->
+<main class="max-w-6xl mx-auto px-6 py-12">
+    {% block contents %}
+    {% endblock %}
+</main>
+
+
+<!-- 🔥 FOOTER -->
+<footer class="bg-gray-800 border-t border-gray-700 text-center py-4">
+    <p class="text-gray-400 text-sm">
+        © 2026 AIS Cybersecurity Platform | Secure Maritime Intelligence
+    </p>
+</footer>
+
+
+<!-- 🔥 STYLES -->
+<style>
+
+.nav-btn {
+    background: rgba(55, 65, 81, 0.6);
+    padding: 8px 14px;
+    border-radius: 8px;
+    font-size: 14px;
+    color: #cbd5e1;
+    transition: all 0.3s ease;
+}
+
+.nav-btn:hover {
+    background: rgba(99, 102, 241, 0.2);
+    color: #818cf8;
+    transform: translateY(-2px);
+}
+
+</style>
+
+
+<!-- 🔥 ANIMATION -->
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+    document.body.classList.add("opacity-0");
+    setTimeout(() => {
+        document.body.classList.remove("opacity-0");
+        document.body.classList.add("transition-opacity", "duration-700");
+    }, 100);
+});
+</script>
+
+</body>
+</html>

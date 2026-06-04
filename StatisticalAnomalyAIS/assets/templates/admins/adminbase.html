@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>AIS Anomaly Detection Dashboard</title>
+
+    <!-- Tailwind -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+
+    <!-- Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+    </style>
+</head>
+
+<body class="bg-gray-900 text-white">
+
+<!-- 🔥 NAVBAR -->
+<header class="bg-gray-800 shadow-md">
+    <div class="max-w-7xl mx-auto flex justify-between items-center px-6 py-4">
+
+        <h1 class="text-xl font-bold text-indigo-400">
+            🚢 AIS Cyber Security Dashboard
+        </h1>
+
+        <div class="flex items-center space-x-6">
+            <a href="{% url 'AdminHome' %}" class="hover:text-indigo-400 transition">
+                <i class="fa fa-home"></i> Home
+            </a>
+            <a href="{% url 'RegisterUsersView' %}" class="hover:text-indigo-400 transition">
+                <i class="fa fa-users"></i> Users
+            </a>
+            <a href="{% url 'index' %}" class="hover:text-red-400 transition">
+                <i class="fa fa-sign-out-alt"></i> Logout
+            </a>
+        </div>
+
+    </div>
+</header>
+
+
+<!-- 🔥 MAIN CONTENT -->
+<main class="max-w-7xl mx-auto py-10 px-6">
+    {% block contents %}
+    {% endblock %}
+</main>
+
+
+<!-- 🔥 FOOTER -->
+<footer class="bg-gray-800 text-gray-400 py-4 text-center mt-10 border-t border-gray-700">
+    <p class="text-sm">
+        © 2026 AIS Anomaly Detection | Cybersecurity Analytics Platform
+    </p>
+</footer>
+
+
+<!-- 🔥 ANIMATION -->
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+    document.body.classList.add("opacity-0");
+    setTimeout(() => {
+        document.body.classList.remove("opacity-0");
+        document.body.classList.add("transition-opacity", "duration-700");
+    }, 100);
+});
+</script>
+
+</body>
+</html>
